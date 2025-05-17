@@ -1,0 +1,226 @@
+export default {
+  common: {
+    appName: 'Smart Booking Platform',
+    loading: 'Loading...',
+    error: 'An error occurred. Please try again.',
+    submit: 'Submit',
+    cancel: 'Cancel',
+    save: 'Save',
+    search: 'Search',
+    notFound: 'Page not found',
+    backToHome: 'Back to home',
+    welcome: 'Welcome to the Smart Booking Platform',
+    home: 'Home'
+  },
+  
+  auth: {
+    login: 'Login',
+    register: 'Register',
+    logout: 'Logout',
+    email: 'Email',
+    password: 'Password',
+    confirmPassword: 'Confirm Password',
+    fullName: 'Full Name',
+    phoneNumber: 'Phone Number',
+    rememberMe: 'Remember me',
+    forgotPassword: 'Forgot password?',
+    resetPassword: 'Reset Password',
+    alreadyHaveAccount: 'Already have an account?',
+    dontHaveAccount: 'Don\'t have an account?',
+    createAccount: 'Create account',
+    loginSuccess: 'Login successful',
+    registerSuccess: 'Account created successfully',
+    logoutSuccess: 'Logout successful',
+    loginError: 'Login failed. Please check your credentials.',
+    registerError: 'Registration failed. Please try again.'
+  },
+  
+  hotels: {
+    search: 'Search Hotels',
+    filters: 'Filters',
+    results: 'Search Results',
+    noResults: 'No results match your search criteria',
+    city: 'City',
+    checkIn: 'Check-in',
+    checkOut: 'Check-out',
+    guests: 'Guests',
+    rooms: 'Rooms',
+    price: 'Price',
+    priceRange: 'Price Range',
+    rating: 'Rating',
+    stars: 'Stars',
+    facilities: 'Facilities',
+    sort: 'Sort by',
+    sortOptions: {
+      recommended: 'Recommended',
+      priceAsc: 'Price: Low to High',
+      priceDesc: 'Price: High to Low',
+      rating: 'Rating',
+      distance: 'Distance from city center'
+    },
+    perNight: 'per night',
+    totalPrice: 'Total Price',
+    bookNow: 'Book Now',
+    viewDetails: 'View Details',
+    amenities: 'Amenities',
+    description: 'Description',
+    location: 'Location',
+    reviews: 'Reviews',
+    policies: 'Policies',
+    similarHotels: 'Similar Hotels',
+    availableRooms: 'Available Rooms',
+    selectRoom: 'Select Room',
+    reviewsCount: 'Number of reviews',
+    cities: 'Cities'
+  },
+  
+  booking: {
+    title: 'Confirm Booking',
+    summary: 'Booking Summary',
+    step1: 'Select Room',
+    step2: 'Booking Information',
+    step3: 'Payment',
+    step4: 'Confirmation',
+    guestDetails: 'Guest Details',
+    paymentDetails: 'Payment Details',
+    bookingSummary: 'Booking Summary',
+    confirmationNumber: 'Confirmation Number',
+    bookingDate: 'Booking Date',
+    stayDetails: 'Stay Details',
+    checkInTime: 'Check-in Time',
+    checkOutTime: 'Check-out Time',
+    totalStay: 'Total Stay',
+    nights: 'nights',
+    specialRequests: 'Special Requests',
+    bookingPolicies: 'Booking Policies',
+    cancellationPolicy: 'Cancellation Policy',
+    paymentPolicy: 'Payment Policy',
+    confirmBooking: 'Confirm Booking',
+    bookingSuccess: 'Booking Successful!',
+    bookingError: 'Booking failed. Please try again.',
+    viewBooking: 'View Booking',
+    myBookings: 'My Bookings',
+    modifyBooking: 'Modify Booking',
+    cancelBooking: 'Cancel Booking',
+    payNow: 'Pay Now',
+    payLater: 'Pay Later',
+    noBookings: 'You have no bookings',
+    status: {
+      pending: 'Pending',
+      confirmed: 'Confirmed',
+      cancelled: 'Cancelled',
+      completed: 'Completed'
+    }
+  },
+  
+  chatbot: {
+    title: 'Smart Assistant',
+    placeholder: 'Ask about hotels, bookings, or any other inquiries...',
+    send: 'Send',
+    suggestions: {
+      hotels: 'What hotels are available in Algiers?',
+      booking: 'How can I complete a booking?',
+      cancellation: 'What is the cancellation policy?',
+      payment: 'What payment methods are available?',
+      bestHotels: 'What are the best hotels in Oran?'
+    }
+  },
+  
+  cities: {
+    algiers: 'Algiers',
+    oran: 'Oran',
+    constantine: 'Constantine',
+    annaba: 'Annaba',
+    setif: 'Setif',
+    batna: 'Batna',
+    blida: 'Blida',
+    sidi_bel_abbes: 'Sidi Bel Abbes',
+    tlemcen: 'Tlemcen',
+    biskra: 'Biskra'
+  },
+
+  profile: {
+    title: 'Profile',
+    personalInfo: 'Personal Information',
+    bookingHistory: 'Booking History',
+    preferences: 'Preferences',
+    updateProfile: 'Update Profile',
+    updatePassword: 'Update Password',
+    currentPassword: 'Current Password',
+    newPassword: 'New Password',
+    confirmNewPassword: 'Confirm New Password',
+    profileUpdated: 'Profile updated successfully',
+    passwordUpdated: 'Password updated successfully'
+  },
+
+  footer: {
+    about: 'About DzSmartBooking',
+    contact: 'Contact Us',
+    terms: 'Terms & Conditions',
+    privacy: 'Privacy Policy',
+    copyright: '© 2025 DzSmartBooking. All rights reserved.',
+    followUs: 'Follow Us',
+    newsletter: 'Subscribe to our newsletter',
+    subscribeSuccess: 'Subscription successful!',
+    newsletterPlaceholder: 'Enter your email',
+    rentals: 'Rentals'
+  },
+  
+  payment: {
+    title: 'Payment',
+    edahabia: 'Edahabia Card',
+    cib: 'CIB Card',
+    cardNumber: 'Card Number',
+    expiryDate: 'Expiry Date',
+    cvv: 'CVV',
+    cardHolder: 'Card Holder',
+    paymentSuccess: 'Payment Successful',
+    paymentError: 'Payment Failed. Please try again.',
+    proceed: 'Proceed to Payment',
+    secure: 'Secure Payment',
+    amount: 'Amount',
+    bank: 'Bank',
+    paymentMethod: 'Payment Method'
+  },
+  
+  contact: {
+    title: 'Contact Us',
+    name: 'Name',
+    email: 'Email',
+    message: 'Message',
+    phone: 'Phone',
+    address: 'Address',
+    send: 'Send',
+    messageSent: 'Message sent successfully',
+    getInTouch: 'Get in Touch',
+    contactInfo: 'Contact Information',
+    contactNumber: 'Contact Number:',
+    writeToUs: 'Write to Us'
+  },
+  
+  aboutUs: {
+    title: 'About Us',
+    mission: 'Our Mission',
+    vision: 'Our Vision',
+    story: 'Our Story',
+    team: 'Our Team',
+    values: 'Our Values'
+  },
+  
+  rentals: {
+    title: 'Rentals',
+    apartments: 'Apartments',
+    villas: 'Villas',
+    search: 'Search Rentals',
+    type: 'Type',
+    bedrooms: 'Bedrooms',
+    bathrooms: 'Bathrooms',
+    amenities: 'Amenities',
+    viewDetails: 'View Details',
+    bookNow: 'Book Now',
+    perNight: 'per night',
+    perMonth: 'per month',
+    contactOwner: 'Contact Owner',
+    filter: 'Filter'
+  }
+};

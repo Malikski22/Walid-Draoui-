@@ -1,0 +1,226 @@
+export default {
+  common: {
+    appName: 'Plateforme de Réservation Intelligente',
+    loading: 'Chargement...',
+    error: 'Une erreur s\'est produite. Veuillez réessayer.',
+    submit: 'Soumettre',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    search: 'Rechercher',
+    notFound: 'Page non trouvée',
+    backToHome: 'Retour à l\'accueil',
+    welcome: 'Bienvenue sur la plateforme de réservation intelligente',
+    home: 'Accueil'
+  },
+  
+  auth: {
+    login: 'Connexion',
+    register: 'Créer un compte',
+    logout: 'Déconnexion',
+    email: 'Email',
+    password: 'Mot de passe',
+    confirmPassword: 'Confirmer le mot de passe',
+    fullName: 'Nom complet',
+    phoneNumber: 'Numéro de téléphone',
+    rememberMe: 'Se souvenir de moi',
+    forgotPassword: 'Mot de passe oublié?',
+    resetPassword: 'Réinitialiser le mot de passe',
+    alreadyHaveAccount: 'Vous avez déjà un compte?',
+    dontHaveAccount: 'Vous n\'avez pas de compte?',
+    createAccount: 'Créer un compte',
+    loginSuccess: 'Connexion réussie',
+    registerSuccess: 'Compte créé avec succès',
+    logoutSuccess: 'Déconnexion réussie',
+    loginError: 'Échec de la connexion. Vérifiez vos identifiants.',
+    registerError: 'Échec de la création du compte. Veuillez réessayer.'
+  },
+  
+  hotels: {
+    search: 'Rechercher des hôtels',
+    filters: 'Filtres',
+    results: 'Résultats de recherche',
+    noResults: 'Aucun résultat correspondant à vos critères',
+    city: 'Ville',
+    checkIn: 'Arrivée',
+    checkOut: 'Départ',
+    guests: 'Voyageurs',
+    rooms: 'Chambres',
+    price: 'Prix',
+    priceRange: 'Fourchette de prix',
+    rating: 'Note',
+    stars: 'Étoiles',
+    facilities: 'Équipements',
+    sort: 'Trier par',
+    sortOptions: {
+      recommended: 'Recommandé',
+      priceAsc: 'Prix: croissant',
+      priceDesc: 'Prix: décroissant',
+      rating: 'Note',
+      distance: 'Distance du centre-ville'
+    },
+    perNight: 'par nuit',
+    totalPrice: 'Prix total',
+    bookNow: 'Réserver maintenant',
+    viewDetails: 'Voir les détails',
+    amenities: 'Commodités',
+    description: 'Description',
+    location: 'Emplacement',
+    reviews: 'Avis',
+    policies: 'Politiques',
+    similarHotels: 'Hôtels similaires',
+    availableRooms: 'Chambres disponibles',
+    selectRoom: 'Sélectionner',
+    reviewsCount: 'Nombre d\'avis',
+    cities: 'Villes'
+  },
+  
+  booking: {
+    title: 'Confirmer la réservation',
+    summary: 'Résumé de la réservation',
+    step1: 'Choisir une chambre',
+    step2: 'Informations de réservation',
+    step3: 'Paiement',
+    step4: 'Confirmation',
+    guestDetails: 'Informations du voyageur',
+    paymentDetails: 'Informations de paiement',
+    bookingSummary: 'Résumé de la réservation',
+    confirmationNumber: 'Numéro de confirmation',
+    bookingDate: 'Date de réservation',
+    stayDetails: 'Détails du séjour',
+    checkInTime: 'Heure d\'arrivée',
+    checkOutTime: 'Heure de départ',
+    totalStay: 'Total du séjour',
+    nights: 'nuits',
+    specialRequests: 'Demandes spéciales',
+    bookingPolicies: 'Politiques de réservation',
+    cancellationPolicy: 'Politique d\'annulation',
+    paymentPolicy: 'Politique de paiement',
+    confirmBooking: 'Confirmer la réservation',
+    bookingSuccess: 'Réservation réussie!',
+    bookingError: 'Échec de la réservation. Veuillez réessayer.',
+    viewBooking: 'Voir la réservation',
+    myBookings: 'Mes réservations',
+    modifyBooking: 'Modifier la réservation',
+    cancelBooking: 'Annuler la réservation',
+    payNow: 'Payer maintenant',
+    payLater: 'Payer plus tard',
+    noBookings: 'Vous n\'avez aucune réservation',
+    status: {
+      pending: 'En attente',
+      confirmed: 'Confirmée',
+      cancelled: 'Annulée',
+      completed: 'Terminée'
+    }
+  },
+  
+  chatbot: {
+    title: 'Assistant Intelligent',
+    placeholder: 'Posez des questions sur les hôtels, les réservations ou autres...',
+    send: 'Envoyer',
+    suggestions: {
+      hotels: 'Quels hôtels sont disponibles à Alger?',
+      booking: 'Comment puis-je compléter une réservation?',
+      cancellation: 'Quelle est la politique d\'annulation?',
+      payment: 'Quels modes de paiement sont acceptés?',
+      bestHotels: 'Quels sont les meilleurs hôtels à Oran?'
+    }
+  },
+  
+  cities: {
+    algiers: 'Alger',
+    oran: 'Oran',
+    constantine: 'Constantine',
+    annaba: 'Annaba',
+    setif: 'Sétif',
+    batna: 'Batna',
+    blida: 'Blida',
+    sidi_bel_abbes: 'Sidi Bel Abbès',
+    tlemcen: 'Tlemcen',
+    biskra: 'Biskra'
+  },
+
+  profile: {
+    title: 'Profil',
+    personalInfo: 'Informations personnelles',
+    bookingHistory: 'Historique des réservations',
+    preferences: 'Préférences',
+    updateProfile: 'Mettre à jour le profil',
+    updatePassword: 'Mettre à jour le mot de passe',
+    currentPassword: 'Mot de passe actuel',
+    newPassword: 'Nouveau mot de passe',
+    confirmNewPassword: 'Confirmer le nouveau mot de passe',
+    profileUpdated: 'Profil mis à jour avec succès',
+    passwordUpdated: 'Mot de passe mis à jour avec succès'
+  },
+
+  footer: {
+    about: 'À propos de DzSmartBooking',
+    contact: 'Contact',
+    terms: 'Conditions générales',
+    privacy: 'Politique de confidentialité',
+    copyright: '© 2025 DzSmartBooking. Tous droits réservés.',
+    followUs: 'Suivez-nous',
+    newsletter: 'Inscrivez-vous à notre newsletter',
+    subscribeSuccess: 'Inscription réussie!',
+    newsletterPlaceholder: 'Entrez votre email',
+    rentals: 'Locations'
+  },
+  
+  payment: {
+    title: 'Paiement',
+    edahabia: 'Carte Edahabia',
+    cib: 'Carte CIB',
+    cardNumber: 'Numéro de carte',
+    expiryDate: 'Date d\'expiration',
+    cvv: 'CVV',
+    cardHolder: 'Titulaire de la carte',
+    paymentSuccess: 'Paiement réussi',
+    paymentError: 'Échec du paiement. Veuillez réessayer.',
+    proceed: 'Procéder au paiement',
+    secure: 'Paiement sécurisé',
+    amount: 'Montant',
+    bank: 'Banque',
+    paymentMethod: 'Méthode de paiement'
+  },
+  
+  contact: {
+    title: 'Contactez-nous',
+    name: 'Nom',
+    email: 'Email',
+    message: 'Message',
+    phone: 'Téléphone',
+    address: 'Adresse',
+    send: 'Envoyer',
+    messageSent: 'Message envoyé avec succès',
+    getInTouch: 'Contactez-nous',
+    contactInfo: 'Informations de contact',
+    contactNumber: 'Numéro de téléphone:',
+    writeToUs: 'Écrivez-nous'
+  },
+  
+  aboutUs: {
+    title: 'À propos de nous',
+    mission: 'Notre mission',
+    vision: 'Notre vision',
+    story: 'Notre histoire',
+    team: 'Notre équipe',
+    values: 'Nos valeurs'
+  },
+  
+  rentals: {
+    title: 'Locations',
+    apartments: 'Appartements',
+    villas: 'Villas',
+    search: 'Rechercher des locations',
+    type: 'Type',
+    bedrooms: 'Chambres',
+    bathrooms: 'Salles de bain',
+    amenities: 'Commodités',
+    viewDetails: 'Voir les détails',
+    bookNow: 'Réserver maintenant',
+    perNight: 'par nuit',
+    perMonth: 'par mois',
+    contactOwner: 'Contacter le propriétaire',
+    filter: 'Filtrer'
+  }
+};
