@@ -29,6 +29,12 @@ const Navbar = ({ user, onLogout }) => {
               >
                 {t('common.appName')}
               </Link>
+              <Link
+                to="/bus"
+                className="border-transparent text-gray-700 hover:text-blue-700 hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                حجز تذاكر الحافلات
+              </Link>
             </div>
           </div>
           <div className="hidden sm:mr-6 sm:flex sm:items-center">
