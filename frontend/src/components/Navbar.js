@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Bars3Icon, XMarkIcon, UserCircleIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, UserCircleIcon, HomeIcon, LanguageIcon } from '@heroicons/react/24/outline';
 import Logo from './Logo';
+import { changeLanguage } from '../i18n';
 
 const Navbar = ({ user, onLogout }) => {
   const { t } = useTranslation();
