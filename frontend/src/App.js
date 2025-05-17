@@ -10,6 +10,10 @@ import AuthPage from './pages/AuthPage';
 import HotelsPage from './pages/HotelsPage';
 import HotelDetailPage from './pages/HotelDetailPage';
 import BookingsPage from './pages/BookingsPage';
+import BusSearchPage from './pages/BusSearchPage';
+import BusTripsPage from './pages/BusTripsPage';
+import BusTripDetailPage from './pages/BusTripDetailPage';
+import BusBookingsPage from './pages/BusBookingsPage';
 import './App.css';
 
 // Protected route component
