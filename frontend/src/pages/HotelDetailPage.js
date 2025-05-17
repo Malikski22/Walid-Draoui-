@@ -448,9 +448,12 @@ const HotelDetailPage = ({ user }) => {
                     
                     <button
                       onClick={handleBooking}
-                      className="mt-4 w-full bg-blue-700 text-white px-4 py-2 rounded font-medium hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2"
+                      disabled={!selectedRoom || isSubmitting}
+                      className={`mt-4 w-full bg-blue-700 text-white px-4 py-2 rounded font-medium ${
+                        !selectedRoom || isSubmitting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-800'
+                      } focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2`}
                     >
-                      {t('booking.confirmBooking')}
+                      {isSubmitting ? 'جاري الحجز...' : t('booking.confirmBooking')}
                     </button>
                   </div>
                 )}
