@@ -6,7 +6,7 @@ import Logo from './Logo';
 import { changeLanguage } from '../i18n';
 
 const Navbar = ({ user, onLogout }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
