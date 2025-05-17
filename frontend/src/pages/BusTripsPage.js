@@ -10,7 +10,7 @@ import {
   UserGroupIcon,
   CurrencyDollarIcon,
   ArrowLongRightIcon,
-  BusIcon,
+  TruckIcon,
   BuildingOfficeIcon,
   WifiIcon,
   TvIcon,
