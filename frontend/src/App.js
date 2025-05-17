@@ -14,6 +14,13 @@ import BusSearchPage from './pages/BusSearchPage';
 import BusTripsPage from './pages/BusTripsPage';
 import BusTripDetailPage from './pages/BusTripDetailPage';
 import BusBookingsPage from './pages/BusBookingsPage';
+import RentalsPage from './pages/RentalsPage';
+import RentalDetailPage from './pages/RentalDetailPage';
+import PaymentPage from './pages/PaymentPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import PrivacyPage from './pages/PrivacyPage';
+import TermsPage from './pages/TermsPage';
 import './App.css';
 
 // Protected route component
