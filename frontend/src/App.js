@@ -98,6 +98,26 @@ const App = () => {
                 } 
               />
               
+              {/* Rentals Routes */}
+              <Route path="/rentals" element={<RentalsPage />} />
+              <Route path="/rentals/:id" element={<RentalDetailPage user={user} />} />
+              
+              {/* Payment Route */}
+              <Route 
+                path="/payment" 
+                element={
+                  <ProtectedRoute user={user}>
+                    <PaymentPage />
+                  </ProtectedRoute>
+                } 
+              />
+              
+              {/* Static Pages */}
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              
               {/* Fallback route */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
