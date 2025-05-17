@@ -106,6 +106,76 @@ class BookingStatus(str, Enum):
     CANCELED = "canceled"
     COMPLETED = "completed"
 
+class BusCompany(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    logo: Optional[str] = None
+    description: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+class BusRoute(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    company_id: str
+    origin_city: str
+    destination_city: str
+    distance_km: float
+    duration_minutes: int
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+class BusType(str, Enum):
+    STANDARD = "standard"
+    PREMIUM = "premium"
+    VIP = "vip"
+
+class BusTrip(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    route_id: str
+    company_id: str
+    bus_type: BusType = BusType.STANDARD
+    departure_date: datetime
+    departure_time: time
+    arrival_time: time
+    available_seats: int
+    total_seats: int
+    price: float
+    features: List[str] = []
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+class BusSeat(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    trip_id: str
+    seat_number: str
+    is_available: bool = True
+    price: float
+
+class BusTicketBooking(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    trip_id: str
+    passenger_name: str
+    passenger_phone: str
+    seat_number: str
+    price: float
+    booking_date: datetime = Field(default_factory=datetime.utcnow)
+    status: BookingStatus = BookingStatus.PENDING
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+class BusTicketBookingCreate(BaseModel):
+    trip_id: str
+    passenger_name: str
+    passenger_phone: str
+    seat_number: str
+
+class BusTripSearch(BaseModel):
+    origin_city: str
+    destination_city: str
+    departure_date: datetime
+    passengers_count: int = 1
+
 class BookingBase(BaseModel):
     hotel_id: str
     room_id: str
