@@ -104,6 +104,24 @@ const HomePage = () => {
             ))}
           </div>
         </section>
+
+        {/* Bus Tickets Section */}
+        <section className="mt-16 mb-16 bg-blue-50 py-10 px-4 sm:px-6 rounded-lg">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+              حجز تذاكر الحافلات بين المدن
+            </h2>
+            <p className="text-lg text-gray-600 mb-6">
+              استكشف خدمة حجز تذاكر الحافلات بين المدن الجزائرية. احجز بسهولة وسرعة مع أفضل شركات النقل.
+            </p>
+            <Link
+              to="/bus"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-700 hover:bg-blue-800 md:py-4 md:text-lg md:px-8"
+            >
+              حجز تذاكر الحافلات
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );
