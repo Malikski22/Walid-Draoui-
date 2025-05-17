@@ -98,7 +98,7 @@ const BusBookingCard = ({ bookingData, onCancel }) => {
         <div className="flex flex-col sm:flex-row justify-between">
           <div>
             <div className="flex items-center">
-              <BusIcon className="h-5 w-5 text-blue-700 ml-2" />
+              <TruckIcon className="h-5 w-5 text-blue-700 ml-2" />
               <h3 className="text-lg font-bold text-gray-900">{company.name}</h3>
               <span className="mr-2 text-sm text-gray-600">({formatBusType(trip.bus_type)})</span>
             </div>
