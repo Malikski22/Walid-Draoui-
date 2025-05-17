@@ -779,9 +779,15 @@ async def cancel_bus_booking(
 # Include the router in the main app
 app.include_router(api_router)
 
-@api_router.get("/", tags=["health"])
+# Health check endpoint for the main app
+@app.get("/", tags=["health"])
 async def root():
-    return {"message": "DzSmartBooking API is running"}
+    return {"message": "DzSmartBooking API is running", "status": "ok"}
+
+# Health check endpoint for API router
+@api_router.get("/health", tags=["health"])
+async def api_health():
+    return {"message": "DzSmartBooking API is running", "status": "ok"}
 
 # CORS configuration
 app.add_middleware(
