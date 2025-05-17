@@ -113,8 +113,8 @@ async def seed_database():
                 
                 trip_date = datetime.now() + timedelta(days=day)
                 
-                # Calculate arrival time
-                departure_time_obj = time(hour=departure_hour, minute=0)
+                # Calculate times as strings
+                departure_time_str = f"{departure_hour:02d}:00"
                 
                 # Calculate arrival time (duration in minutes)
                 total_minutes = departure_hour * 60 + route["duration_minutes"]
@@ -125,7 +125,7 @@ async def seed_database():
                 if arrival_hour >= 24:
                     arrival_hour = arrival_hour % 24
                 
-                arrival_time_obj = time(hour=arrival_hour, minute=arrival_minute)
+                arrival_time_str = f"{arrival_hour:02d}:{arrival_minute:02d}"
                 
                 # Randomize bus type
                 bus_type = random.choice(["standard", "premium", "vip"])
@@ -163,8 +163,8 @@ async def seed_database():
                     "company_id": company_id,
                     "bus_type": bus_type,
                     "departure_date": trip_date,
-                    "departure_time": departure_time_obj,
-                    "arrival_time": arrival_time_obj,
+                    "departure_time": departure_time_str,
+                    "arrival_time": arrival_time_str,
                     "available_seats": total_seats,
                     "total_seats": total_seats,
                     "price": round(price, 2),
