@@ -1,0 +1,165 @@
+export default {
+  common: {
+    appName: 'منصة حجز فنادق ذكية',
+    loading: 'جاري التحميل...',
+    error: 'حدث خطأ. يرجى المحاولة مرة أخرى.',
+    submit: 'إرسال',
+    cancel: 'إلغاء',
+    save: 'حفظ',
+    search: 'بحث',
+    notFound: 'الصفحة غير موجودة',
+    backToHome: 'العودة للصفحة الرئيسية',
+    welcome: 'مرحبًا بك في منصة حجز فنادق ذكية'
+  },
+  
+  auth: {
+    login: 'تسجيل الدخول',
+    register: 'إنشاء حساب',
+    logout: 'تسجيل الخروج',
+    email: 'البريد الإلكتروني',
+    password: 'كلمة المرور',
+    confirmPassword: 'تأكيد كلمة المرور',
+    fullName: 'الاسم الكامل',
+    phoneNumber: 'رقم الهاتف',
+    rememberMe: 'تذكرني',
+    forgotPassword: 'نسيت كلمة المرور؟',
+    resetPassword: 'إعادة تعيين كلمة المرور',
+    alreadyHaveAccount: 'لديك حساب بالفعل؟',
+    dontHaveAccount: 'ليس لديك حساب؟',
+    createAccount: 'أنشئ حسابًا',
+    loginSuccess: 'تم تسجيل الدخول بنجاح',
+    registerSuccess: 'تم إنشاء الحساب بنجاح',
+    logoutSuccess: 'تم تسجيل الخروج بنجاح',
+    loginError: 'فشل تسجيل الدخول. تحقق من بيانات الاعتماد الخاصة بك.',
+    registerError: 'فشل إنشاء الحساب. يرجى المحاولة مرة أخرى.'
+  },
+  
+  hotels: {
+    search: 'البحث عن فنادق',
+    filters: 'الفلاتر',
+    results: 'نتائج البحث',
+    noResults: 'لا توجد نتائج تطابق معايير البحث',
+    city: 'المدينة',
+    checkIn: 'تاريخ الوصول',
+    checkOut: 'تاريخ المغادرة',
+    guests: 'عدد الضيوف',
+    rooms: 'عدد الغرف',
+    price: 'السعر',
+    priceRange: 'نطاق السعر',
+    rating: 'التقييم',
+    stars: 'النجوم',
+    facilities: 'المرافق',
+    sort: 'الترتيب حسب',
+    sortOptions: {
+      recommended: 'موصى به',
+      priceAsc: 'السعر: من الأقل إلى الأعلى',
+      priceDesc: 'السعر: من الأعلى إلى الأقل',
+      rating: 'التقييم',
+      distance: 'المسافة من وسط المدينة'
+    },
+    perNight: 'لليلة',
+    totalPrice: 'السعر الإجمالي',
+    bookNow: 'احجز الآن',
+    viewDetails: 'عرض التفاصيل',
+    amenities: 'وسائل الراحة',
+    description: 'الوصف',
+    location: 'الموقع',
+    reviews: 'التقييمات',
+    policies: 'السياسات',
+    similarHotels: 'فنادق مماثلة',
+    availableRooms: 'الغرف المتاحة',
+    selectRoom: 'اختر الغرفة',
+    reviewsCount: 'عدد التقييمات'
+  },
+  
+  booking: {
+    title: 'تأكيد الحجز',
+    summary: 'ملخص الحجز',
+    step1: 'اختيار الغرفة',
+    step2: 'معلومات الحجز',
+    step3: 'الدفع',
+    step4: 'تأكيد',
+    guestDetails: 'بيانات الضيف',
+    paymentDetails: 'بيانات الدفع',
+    bookingSummary: 'ملخص الحجز',
+    confirmationNumber: 'رقم التأكيد',
+    bookingDate: 'تاريخ الحجز',
+    stayDetails: 'تفاصيل الإقامة',
+    checkInTime: 'وقت تسجيل الوصول',
+    checkOutTime: 'وقت تسجيل المغادرة',
+    totalStay: 'إجمالي الإقامة',
+    nights: 'ليالي',
+    specialRequests: 'طلبات خاصة',
+    bookingPolicies: 'سياسات الحجز',
+    cancellationPolicy: 'سياسة الإلغاء',
+    paymentPolicy: 'سياسة الدفع',
+    confirmBooking: 'تأكيد الحجز',
+    bookingSuccess: 'تم الحجز بنجاح!',
+    bookingError: 'فشل إتمام الحجز. يرجى المحاولة مرة أخرى.',
+    viewBooking: 'عرض الحجز',
+    myBookings: 'حجوزاتي',
+    modifyBooking: 'تعديل الحجز',
+    cancelBooking: 'إلغاء الحجز',
+    payNow: 'ادفع الآن',
+    payLater: 'ادفع لاحقًا',
+    noBookings: 'ليس لديك أي حجوزات',
+    status: {
+      pending: 'قيد الانتظار',
+      confirmed: 'مؤكد',
+      cancelled: 'ملغي',
+      completed: 'مكتمل'
+    }
+  },
+  
+  chatbot: {
+    title: 'المساعد الذكي',
+    placeholder: 'اسأل عن الفنادق، الحجوزات، أو أي استفسارات أخرى...',
+    send: 'إرسال',
+    suggestions: {
+      hotels: 'ما هي الفنادق المتاحة في الجزائر العاصمة؟',
+      booking: 'كيف يمكنني إكمال عملية الحجز؟',
+      cancellation: 'ما هي سياسة الإلغاء؟',
+      payment: 'ما هي طرق الدفع المتاحة؟',
+      bestHotels: 'ما هي أفضل الفنادق في وهران؟'
+    }
+  },
+  
+  cities: {
+    algiers: 'الجزائر العاصمة',
+    oran: 'وهران',
+    constantine: 'قسنطينة',
+    annaba: 'عنابة',
+    setif: 'سطيف',
+    batna: 'باتنة',
+    blida: 'البليدة',
+    sidi_bel_abbes: 'سيدي بلعباس',
+    tlemcen: 'تلمسان',
+    biskra: 'بسكرة'
+  },
+
+  profile: {
+    title: 'الملف الشخصي',
+    personalInfo: 'المعلومات الشخصية',
+    bookingHistory: 'سجل الحجوزات',
+    preferences: 'التفضيلات',
+    updateProfile: 'تحديث الملف الشخصي',
+    updatePassword: 'تحديث كلمة المرور',
+    currentPassword: 'كلمة المرور الحالية',
+    newPassword: 'كلمة المرور الجديدة',
+    confirmNewPassword: 'تأكيد كلمة المرور الجديدة',
+    profileUpdated: 'تم تحديث الملف الشخصي بنجاح',
+    passwordUpdated: 'تم تحديث كلمة المرور بنجاح'
+  },
+
+  footer: {
+    about: 'عن DzSmartBooking',
+    contact: 'اتصل بنا',
+    terms: 'الشروط والأحكام',
+    privacy: 'سياسة الخصوصية',
+    copyright: '© 2025 DzSmartBooking. جميع الحقوق محفوظة.',
+    followUs: 'تابعنا',
+    newsletter: 'اشترك في النشرة الإخبارية',
+    subscribeSuccess: 'تم الاشتراك بنجاح!',
+    newsletterPlaceholder: 'أدخل بريدك الإلكتروني'
+  }
+};
