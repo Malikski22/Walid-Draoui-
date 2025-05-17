@@ -84,6 +84,20 @@ const App = () => {
                   </ProtectedRoute>
                 } 
               />
+              
+              {/* Bus Routes */}
+              <Route path="/bus" element={<BusSearchPage />} />
+              <Route path="/bus/trips" element={<BusTripsPage />} />
+              <Route path="/bus/trips/:id" element={<BusTripDetailPage user={user} />} />
+              <Route 
+                path="/bus/bookings" 
+                element={
+                  <ProtectedRoute user={user}>
+                    <BusBookingsPage user={user} />
+                  </ProtectedRoute>
+                } 
+              />
+              
               {/* Fallback route */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
