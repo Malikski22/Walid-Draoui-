@@ -7,7 +7,8 @@ import os
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, EmailStr
-from typing import List, Optional, Union, Dict, Any, Enum
+from typing import List, Optional, Union, Dict, Any
+from enum import Enum
 import uuid
 from datetime import datetime, timedelta
 import bcrypt
