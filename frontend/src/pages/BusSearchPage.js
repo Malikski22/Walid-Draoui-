@@ -8,7 +8,7 @@ import {
   CalendarIcon,
   UserGroupIcon,
   MapPinIcon,
-  BusIcon
+  TruckIcon
 } from '@heroicons/react/24/outline';
 
 const BusSearchPage = () => {
