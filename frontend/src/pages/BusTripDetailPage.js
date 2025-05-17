@@ -198,7 +198,7 @@ const BusTripDetailPage = ({ user }) => {
                         ? 'bg-blue-100 text-blue-800' 
                         : 'bg-gray-100 text-gray-800'
                   }`}>
-                    <BusIcon className="h-4 w-4 inline ml-1" />
+                    <TruckIcon className="h-4 w-4 inline ml-1" />
                     {formatBusType(trip.bus_type)}
                   </span>
                 </div>
