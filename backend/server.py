@@ -544,9 +544,9 @@ async def search_bus_trips(search_data: BusTripSearch):
             company = companies_dict.get(trip["company_id"], {})
             
             result.append({
-                "trip": trip,
-                "route": route,
-                "company": company
+                "trip": BusTrip(**trip),
+                "route": BusRoute(**route),
+                "company": BusCompany(**company)
             })
         
         return result
