@@ -70,6 +70,27 @@ const Footer = () => {
           </div>
           
           <div>
+            <h3 className="text-lg font-semibold mb-4">{t('rentals.title')}</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/rentals" className="text-gray-300 hover:text-white text-sm">
+                  {t('rentals.title')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/rentals?type=apartment" className="text-gray-300 hover:text-white text-sm">
+                  {t('rentals.apartments')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/rentals?type=villa" className="text-gray-300 hover:text-white text-sm">
+                  {t('rentals.villas')}
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
             <h3 className="text-lg font-semibold mb-4">{t('footer.newsletter')}</h3>
             <form className="mt-2">
               <div>
