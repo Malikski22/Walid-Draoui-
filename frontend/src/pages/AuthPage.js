@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Logo from '../components/Logo';
 import { EnvelopeIcon, KeyIcon, PhoneIcon, UserIcon } from '@heroicons/react/24/outline';
