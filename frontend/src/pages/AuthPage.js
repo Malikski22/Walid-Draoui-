@@ -13,6 +13,8 @@ const AuthPage = ({ isLogin = true, setUser }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || '/';
+  const location = useLocation();
+  const from = location.state?.from || '/';
   
   const [formData, setFormData] = useState({
     email: '',
