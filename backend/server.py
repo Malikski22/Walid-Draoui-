@@ -396,9 +396,385 @@ async def get_user_bookings(current_user: UserInDB = Depends(get_current_user)):
     bookings = await db.bookings.find({"user_id": current_user.id}).to_list(1000)
     return [Booking(**booking) for booking in bookings]
 
-@api_router.get("/", tags=["health"])
-async def root():
-    return {"message": "DzSmartBooking API is running"}
+# Bus Company Routes
+@api_router.post("/bus/companies", response_model=BusCompany)
+async def create_bus_company(company_data: BusCompany):
+    await db.bus_companies.insert_one(company_data.dict())
+    return company_data
+
+@api_router.get("/bus/companies", response_model=List[BusCompany])
+async def get_bus_companies():
+    companies = await db.bus_companies.find().to_list(100)
+    return [BusCompany(**company) for company in companies]
+
+@api_router.get("/bus/companies/{company_id}", response_model=BusCompany)
+async def get_bus_company(company_id: str):
+    company = await db.bus_companies.find_one({"id": company_id})
+    if not company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus company not found"
+        )
+    return BusCompany(**company)
+
+# Bus Routes
+@api_router.post("/bus/routes", response_model=BusRoute)
+async def create_bus_route(route_data: BusRoute):
+    # Check if company exists
+    company = await db.bus_companies.find_one({"id": route_data.company_id})
+    if not company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus company not found"
+        )
+    await db.bus_routes.insert_one(route_data.dict())
+    return route_data
+
+@api_router.get("/bus/routes", response_model=List[BusRoute])
+async def get_bus_routes(
+    origin_city: Optional[str] = None,
+    destination_city: Optional[str] = None,
+    company_id: Optional[str] = None
+):
+    filter_query = {}
+    if origin_city:
+        filter_query["origin_city"] = {"$regex": origin_city, "$options": "i"}
+    if destination_city:
+        filter_query["destination_city"] = {"$regex": destination_city, "$options": "i"}
+    if company_id:
+        filter_query["company_id"] = company_id
+    
+    routes = await db.bus_routes.find(filter_query).to_list(100)
+    return [BusRoute(**route) for route in routes]
+
+# Bus Trips
+@api_router.post("/bus/trips", response_model=BusTrip)
+async def create_bus_trip(trip_data: BusTrip):
+    # Check if route exists
+    route = await db.bus_routes.find_one({"id": trip_data.route_id})
+    if not route:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus route not found"
+        )
+    await db.bus_trips.insert_one(trip_data.dict())
+    return trip_data
+
+@api_router.get("/bus/trips", response_model=List[BusTrip])
+async def get_bus_trips(
+    route_id: Optional[str] = None,
+    company_id: Optional[str] = None,
+    departure_date: Optional[str] = None,
+    origin_city: Optional[str] = None,
+    destination_city: Optional[str] = None
+):
+    filter_query = {}
+    if route_id:
+        filter_query["route_id"] = route_id
+    if company_id:
+        filter_query["company_id"] = company_id
+    if departure_date:
+        # Parse date string to datetime object
+        try:
+            date_obj = datetime.fromisoformat(departure_date.replace('Z', '+00:00'))
+            start_of_day = datetime(date_obj.year, date_obj.month, date_obj.day)
+            end_of_day = start_of_day + timedelta(days=1)
+            filter_query["departure_date"] = {"$gte": start_of_day, "$lt": end_of_day}
+        except (ValueError, TypeError):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid date format. Use ISO format (YYYY-MM-DDTHH:MM:SS)"
+            )
+    
+    # If origin_city or destination_city is provided, we need to join with routes
+    if origin_city or destination_city:
+        route_filter = {}
+        if origin_city:
+            route_filter["origin_city"] = {"$regex": origin_city, "$options": "i"}
+        if destination_city:
+            route_filter["destination_city"] = {"$regex": destination_city, "$options": "i"}
+        
+        routes = await db.bus_routes.find(route_filter).to_list(100)
+        route_ids = [route["id"] for route in routes]
+        filter_query["route_id"] = {"$in": route_ids}
+    
+    trips = await db.bus_trips.find(filter_query).to_list(100)
+    return [BusTrip(**trip) for trip in trips]
+
+@api_router.post("/bus/search", response_model=List[Dict[str, Any]])
+async def search_bus_trips(search_data: BusTripSearch):
+    """
+    Search for bus trips with route details
+    """
+    try:
+        # Find routes matching origin and destination
+        routes = await db.bus_routes.find({
+            "origin_city": {"$regex": search_data.origin_city, "$options": "i"},
+            "destination_city": {"$regex": search_data.destination_city, "$options": "i"}
+        }).to_list(100)
+        
+        route_ids = [route["id"] for route in routes]
+        if not route_ids:
+            return []
+        
+        # Format the date to match only the day
+        date_obj = search_data.departure_date
+        start_of_day = datetime(date_obj.year, date_obj.month, date_obj.day)
+        end_of_day = start_of_day + timedelta(days=1)
+        
+        # Find trips for these routes on the specified date
+        trips = await db.bus_trips.find({
+            "route_id": {"$in": route_ids},
+            "departure_date": {"$gte": start_of_day, "$lt": end_of_day},
+            "available_seats": {"$gte": search_data.passengers_count}
+        }).to_list(100)
+        
+        # Create a lookup dictionary for routes
+        routes_dict = {route["id"]: route for route in routes}
+        
+        # Get company details
+        company_ids = list(set(trip["company_id"] for trip in trips))
+        companies = await db.bus_companies.find({"id": {"$in": company_ids}}).to_list(100)
+        companies_dict = {company["id"]: company for company in companies}
+        
+        # Combine trip, route, and company data
+        result = []
+        for trip in trips:
+            route = routes_dict.get(trip["route_id"], {})
+            company = companies_dict.get(trip["company_id"], {})
+            
+            result.append({
+                "trip": trip,
+                "route": route,
+                "company": company
+            })
+        
+        return result
+    
+    except Exception as e:
+        logger.error(f"Error searching bus trips: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Error searching bus trips: {str(e)}"
+        )
+
+@api_router.get("/bus/trips/{trip_id}", response_model=Dict[str, Any])
+async def get_bus_trip_details(trip_id: str):
+    """
+    Get details of a bus trip, including route and company information
+    """
+    # Get trip details
+    trip = await db.bus_trips.find_one({"id": trip_id})
+    if not trip:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus trip not found"
+        )
+    
+    # Get associated route
+    route = await db.bus_routes.find_one({"id": trip["route_id"]})
+    if not route:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus route not found"
+        )
+    
+    # Get company details
+    company = await db.bus_companies.find_one({"id": trip["company_id"]})
+    if not company:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus company not found"
+        )
+    
+    # Get seats information
+    seats = await db.bus_seats.find({"trip_id": trip_id}).to_list(100)
+    
+    return {
+        "trip": BusTrip(**trip),
+        "route": BusRoute(**route),
+        "company": BusCompany(**company),
+        "seats": [BusSeat(**seat) for seat in seats] if seats else []
+    }
+
+@api_router.post("/bus/seats", response_model=List[BusSeat])
+async def create_bus_seats(trip_id: str, total_seats: int, price: float):
+    """
+    Create seats for a bus trip
+    """
+    # Check if trip exists
+    trip = await db.bus_trips.find_one({"id": trip_id})
+    if not trip:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus trip not found"
+        )
+    
+    # Create seats
+    seats = []
+    for i in range(1, total_seats + 1):
+        seat = BusSeat(
+            trip_id=trip_id,
+            seat_number=str(i),
+            is_available=True,
+            price=price
+        )
+        seats.append(seat.dict())
+    
+    await db.bus_seats.insert_many(seats)
+    
+    # Update trip with total seats
+    await db.bus_trips.update_one(
+        {"id": trip_id},
+        {"$set": {"total_seats": total_seats, "available_seats": total_seats}}
+    )
+    
+    return [BusSeat(**seat) for seat in seats]
+
+@api_router.get("/bus/seats/{trip_id}", response_model=List[BusSeat])
+async def get_bus_seats(trip_id: str):
+    """
+    Get all seats for a bus trip
+    """
+    seats = await db.bus_seats.find({"trip_id": trip_id}).to_list(100)
+    return [BusSeat(**seat) for seat in seats]
+
+@api_router.post("/bus/bookings", response_model=BusTicketBooking)
+async def book_bus_ticket(
+    booking_data: BusTicketBookingCreate,
+    current_user: UserInDB = Depends(get_current_user)
+):
+    """
+    Book a bus ticket
+    """
+    # Check if trip exists
+    trip = await db.bus_trips.find_one({"id": booking_data.trip_id})
+    if not trip:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Bus trip not found"
+        )
+    
+    # Check if seat exists and is available
+    seat = await db.bus_seats.find_one({
+        "trip_id": booking_data.trip_id,
+        "seat_number": booking_data.seat_number
+    })
+    
+    if not seat:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Seat not found"
+        )
+    
+    if not seat["is_available"]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Seat is already booked"
+        )
+    
+    # Create booking
+    booking = BusTicketBooking(
+        user_id=current_user.id,
+        trip_id=booking_data.trip_id,
+        passenger_name=booking_data.passenger_name,
+        passenger_phone=booking_data.passenger_phone,
+        seat_number=booking_data.seat_number,
+        price=seat["price"]
+    )
+    
+    await db.bus_ticket_bookings.insert_one(booking.dict())
+    
+    # Update seat availability
+    await db.bus_seats.update_one(
+        {"trip_id": booking_data.trip_id, "seat_number": booking_data.seat_number},
+        {"$set": {"is_available": False}}
+    )
+    
+    # Update available seats count in trip
+    await db.bus_trips.update_one(
+        {"id": booking_data.trip_id},
+        {"$inc": {"available_seats": -1}}
+    )
+    
+    return booking
+
+@api_router.get("/bus/bookings/me", response_model=List[Dict[str, Any]])
+async def get_user_bus_bookings(current_user: UserInDB = Depends(get_current_user)):
+    """
+    Get all bus bookings for the current user
+    """
+    bookings = await db.bus_ticket_bookings.find({"user_id": current_user.id}).to_list(100)
+    if not bookings:
+        return []
+    
+    # Get trip details for each booking
+    result = []
+    for booking in bookings:
+        booking_obj = BusTicketBooking(**booking)
+        trip = await db.bus_trips.find_one({"id": booking["trip_id"]})
+        
+        if trip:
+            route = await db.bus_routes.find_one({"id": trip["route_id"]})
+            company = await db.bus_companies.find_one({"id": trip["company_id"]})
+            
+            result.append({
+                "booking": booking_obj,
+                "trip": BusTrip(**trip) if trip else None,
+                "route": BusRoute(**route) if route else None,
+                "company": BusCompany(**company) if company else None
+            })
+        else:
+            result.append({
+                "booking": booking_obj,
+                "trip": None,
+                "route": None,
+                "company": None
+            })
+    
+    return result
+
+@api_router.put("/bus/bookings/{booking_id}/cancel", response_model=BusTicketBooking)
+async def cancel_bus_booking(
+    booking_id: str,
+    current_user: UserInDB = Depends(get_current_user)
+):
+    """
+    Cancel a bus booking
+    """
+    # Find the booking
+    booking = await db.bus_ticket_bookings.find_one({
+        "id": booking_id,
+        "user_id": current_user.id
+    })
+    
+    if not booking:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found"
+        )
+    
+    # Update booking status
+    await db.bus_ticket_bookings.update_one(
+        {"id": booking_id},
+        {"$set": {"status": BookingStatus.CANCELED, "updated_at": datetime.utcnow()}}
+    )
+    
+    # Make the seat available again
+    await db.bus_seats.update_one(
+        {"trip_id": booking["trip_id"], "seat_number": booking["seat_number"]},
+        {"$set": {"is_available": True}}
+    )
+    
+    # Update available seats count in trip
+    await db.bus_trips.update_one(
+        {"id": booking["trip_id"]},
+        {"$inc": {"available_seats": 1}}
+    )
+    
+    # Return updated booking
+    updated_booking = await db.bus_ticket_bookings.find_one({"id": booking_id})
+    return BusTicketBooking(**updated_booking)
 
 # Include the router in the main app
 app.include_router(api_router)
