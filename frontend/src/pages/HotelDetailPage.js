@@ -95,6 +95,7 @@ const HotelDetailPage = ({ user }) => {
     }
     
     try {
+      setIsSubmitting(true);
       const token = localStorage.getItem('token');
       
       await axios.post(
@@ -126,6 +127,8 @@ const HotelDetailPage = ({ user }) => {
     } catch (error) {
       console.error('Booking error:', error);
       setError(t('booking.bookingError'));
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
