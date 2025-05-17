@@ -28,13 +28,20 @@ const Navbar = ({ user, onLogout }) => {
                 to="/"
                 className="border-transparent text-gray-700 hover:text-blue-700 hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
-                {t('common.appName')}
+                <HomeIcon className="h-5 w-5 ml-1" />
+                {t('common.home')}
               </Link>
               <Link
                 to="/bus"
                 className="border-transparent text-gray-700 hover:text-blue-700 hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
               >
                 حجز تذاكر الحافلات
+              </Link>
+              <Link
+                to="/rentals"
+                className="border-transparent text-gray-700 hover:text-blue-700 hover:border-blue-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                {t('footer.rentals')}
               </Link>
             </div>
           </div>
