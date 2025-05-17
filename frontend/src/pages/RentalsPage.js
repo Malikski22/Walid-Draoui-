@@ -385,6 +385,11 @@ const RentalsPage = () => {
             <div className="md:w-1/6">
               <button
                 type="button"
+                onClick={() => {
+                  // Force rerender by setting a dummy state
+                  setShowFilters(x => !x);
+                  setShowFilters(x => !x);
+                }}
                 className="w-full bg-blue-700 hover:bg-blue-800 text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 <MagnifyingGlassIcon className="h-5 w-5 mx-auto" />
