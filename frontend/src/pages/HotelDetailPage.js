@@ -82,13 +82,16 @@ const HotelDetailPage = ({ user }) => {
   };
   
   const handleBooking = async () => {
+    if (!selectedRoom) {
+      alert('الرجاء اختيار غرفة أولاً');
+      return;
+    }
+    
     if (!user) {
       // Redirect to login if not authenticated
       navigate('/login');
       return;
     }
-    
-    if (!selectedRoom) return;
     
     try {
       const token = localStorage.getItem('token');
@@ -108,8 +111,16 @@ const HotelDetailPage = ({ user }) => {
         }
       );
       
-      // On success, navigate to bookings page
-      navigate('/bookings');
+      // Redirect to payment page with booking info
+      navigate('/payment', {
+        state: {
+          booking: {
+            id: `HOTEL-${Date.now()}`,
+            totalPrice: calculateTotalPrice(),
+            type: 'hotel'
+          }
+        }
+      });
       
     } catch (error) {
       console.error('Booking error:', error);
