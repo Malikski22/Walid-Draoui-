@@ -234,7 +234,7 @@ const BusSearchPage = () => {
                     }}
                     className="mt-2 text-blue-300 hover:text-blue-200 text-sm flex items-center justify-end"
                   >
-                    <BusIcon className="h-4 w-4 ml-1" />
+                    <TruckIcon className="h-4 w-4 ml-1" />
                     البحث عن رحلات
                   </button>
                 </div>
