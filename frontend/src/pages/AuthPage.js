@@ -11,6 +11,8 @@ const API = `${BACKEND_URL}/api`;
 const AuthPage = ({ isLogin = true, setUser }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || '/';
   
   const [formData, setFormData] = useState({
     email: '',
