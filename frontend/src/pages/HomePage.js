@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import HotelSearch from '../components/HotelSearch';
 import { MapPinIcon, BuildingOfficeIcon, SparklesIcon } from '@heroicons/react/24/outline';
