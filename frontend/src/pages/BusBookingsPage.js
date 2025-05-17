@@ -5,7 +5,7 @@ import axios from 'axios';
 import { format } from 'date-fns';
 import { ar } from 'date-fns/locale';
 import {
-  BusIcon,
+  TruckIcon,
   ClockIcon,
   MapPinIcon,
   TicketIcon,
