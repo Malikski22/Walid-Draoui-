@@ -38,6 +38,7 @@ const HotelDetailPage = ({ user }) => {
   });
   const [guestsCount, setGuestsCount] = useState(2);
   const [specialRequests, setSpecialRequests] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   useEffect(() => {
     const fetchHotelDetails = async () => {
