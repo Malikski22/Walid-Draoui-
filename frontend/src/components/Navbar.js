@@ -46,6 +46,33 @@ const Navbar = ({ user, onLogout }) => {
             </div>
           </div>
           <div className="hidden sm:mr-6 sm:flex sm:items-center">
+            {/* Language Selector */}
+            <div className="mr-4 relative group">
+              <button className="flex items-center text-gray-700 hover:text-blue-700 px-2 py-1 rounded-md">
+                <LanguageIcon className="h-5 w-5 ml-1" />
+                <span className="text-sm">{i18n.language.toUpperCase()}</span>
+              </button>
+              <div className="hidden group-hover:block absolute top-full right-0 mt-1 bg-white shadow-lg rounded-md p-2 z-50">
+                <button 
+                  onClick={() => changeLanguage('ar')} 
+                  className={`block px-4 py-2 text-sm ${i18n.language === 'ar' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'} rounded-md w-full text-right`}
+                >
+                  العربية
+                </button>
+                <button 
+                  onClick={() => changeLanguage('fr')} 
+                  className={`block px-4 py-2 text-sm ${i18n.language === 'fr' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'} rounded-md w-full text-right`}
+                >
+                  Français
+                </button>
+                <button 
+                  onClick={() => changeLanguage('en')} 
+                  className={`block px-4 py-2 text-sm ${i18n.language === 'en' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'} rounded-md w-full text-right`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
             {user ? (
               <div className="mr-3 relative">
                 <div className="flex items-center space-x-4 space-x-reverse">
