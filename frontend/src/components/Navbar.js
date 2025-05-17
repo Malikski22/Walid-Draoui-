@@ -107,6 +107,13 @@ const Navbar = ({ user, onLogout }) => {
             >
               {t('common.appName')}
             </Link>
+            <Link
+              to="/bus"
+              className="text-gray-700 hover:text-blue-700 hover:bg-blue-50 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              حجز تذاكر الحافلات
+            </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             {user ? (
