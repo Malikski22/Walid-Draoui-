@@ -15,6 +15,14 @@ const Footer = () => {
             <p className="mt-4 text-gray-300 text-sm">
               {t('common.welcome')}
             </p>
+            <div className="mt-4 text-gray-300 text-sm">
+              <div className="mb-2">
+                <span className="font-semibold">الهاتف:</span> +213555521938
+              </div>
+              <div>
+                <span className="font-semibold">البريد الإلكتروني:</span> contact@dzsmartbooking.com
+              </div>
+            </div>
           </div>
           
           <div>
