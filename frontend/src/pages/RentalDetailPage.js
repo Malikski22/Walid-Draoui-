@@ -89,7 +89,19 @@ const RentalDetailPage = ({ user }) => {
   
   const handleBooking = () => {
     if (!user) {
-      navigate('/login');
+      navigate('/login', { state: { from: `/rentals/${rental.id}` } });
+      return;
+    }
+    
+    // Validate dates
+    if (!startDate || !endDate) {
+      alert('الرجاء تحديد تواريخ الإقامة');
+      return;
+    }
+    
+    // Validate guests
+    if (!guests || guests < 1) {
+      alert('الرجاء تحديد عدد الضيوف');
       return;
     }
     
