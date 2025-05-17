@@ -268,7 +268,7 @@ const BusBookingsPage = ({ user }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {bookings.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
-            <BusIcon className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+            <TruckIcon className="h-16 w-16 mx-auto text-gray-400 mb-4" />
             <h3 className="text-xl font-medium text-gray-900 mb-2">لا توجد حجوزات</h3>
             <p className="text-gray-600 mb-6">لم تقم بحجز أي تذاكر حافلات حتى الآن.</p>
             <Link
