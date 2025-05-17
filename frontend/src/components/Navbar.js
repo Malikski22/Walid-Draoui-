@@ -56,6 +56,12 @@ const Navbar = ({ user, onLogout }) => {
                   >
                     {t('booking.myBookings')}
                   </Link>
+                  <Link
+                    to="/bus/bookings"
+                    className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
+                  >
+                    حجوزات الحافلات
+                  </Link>
                   <button
                     onClick={onLogout}
                     className="text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
