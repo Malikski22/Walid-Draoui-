@@ -135,8 +135,8 @@ class BusTrip(BaseModel):
     company_id: str
     bus_type: BusType = BusType.STANDARD
     departure_date: datetime
-    departure_time: time
-    arrival_time: time
+    departure_time: str  # Changed from time to str
+    arrival_time: str    # Changed from time to str
     available_seats: int
     total_seats: int
     price: float
