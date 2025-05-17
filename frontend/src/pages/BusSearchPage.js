@@ -169,7 +169,7 @@ const BusSearchPage = () => {
                 type="submit"
                 className="w-full flex items-center justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600"
               >
-                <BusIcon className="h-5 w-5 ml-1" />
+                <TruckIcon className="h-5 w-5 ml-1" />
                 بحث عن الرحلات
               </button>
             </div>
